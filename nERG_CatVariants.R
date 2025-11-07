@@ -57,17 +57,17 @@ merged_dbNERG_geneVar_reordered <- merged_dbNERG_geneVar_reordered %>%
   mutate(INFO_dbNSFP_REVEL_score = str_extract(INFO_dbNSFP_REVEL_score, "[^,]+") %>% 
            as.numeric())
 
-#process REVEL column to extract number
+#process AlphaMissense column to extract number
 merged_dbNERG_geneVar_reordered <- merged_dbNERG_geneVar_reordered %>%
   mutate(INFO_dbNSFP_AlphaMissense_score = str_extract(INFO_dbNSFP_AlphaMissense_score, "[^,]+") %>% 
            as.numeric())
 
-#process REVEL column to extract number
+#process MutPred column to extract number
 merged_dbNERG_geneVar_reordered <- merged_dbNERG_geneVar_reordered %>%
   mutate(INFO_dbNSFP_MutPred_score = str_extract(INFO_dbNSFP_MutPred_score, "[^,]+") %>% 
            as.numeric())
 
-#process REVEL column to extract number
+#process VEST4 column to extract number
 merged_dbNERG_geneVar_reordered <- as.data.table(merged_dbNERG_geneVar_reordered %>%
   mutate(INFO_dbNSFP_VEST4_score = str_extract(INFO_dbNSFP_VEST4_score, "[^,]+") %>% 
            as.numeric()))
@@ -85,9 +85,9 @@ setDT(slice_old_interp)[, POS := as.character(POS)]
 
 #add remaining columns
 
-merged_dbNERG_geneVar_reordered <- merged_dbNERG_geneVar_reordered %>% add_column(clinvar_pm3_transseg = as.character(NA),  #PTC, fs, splice within 1-2 bp
-                                                                                  clinvar_pp1_diseaseseg = as.character(NA),   #same AA change as another path variant
-                                                                                  clinvar_comments = as.character(NA),   #de novo (both maternity and paternity confirmed)
+merged_dbNERG_geneVar_reordered <- merged_dbNERG_geneVar_reordered %>% add_column(clinvar_pm3_transseg = as.character(NA),  
+                                                                                  clinvar_pp1_diseaseseg = as.character(NA),   
+                                                                                  clinvar_comments = as.character(NA),   
                                                                                   .before = "Phenotype"
 )
 
